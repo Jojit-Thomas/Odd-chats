@@ -25,13 +25,16 @@ function Register() {
     }
 
     useEffect(() => {
-        if(localStorage.getItem('chat-app-user'))
+        console.log("asdfasdf")
+        if (localStorage.getItem('chat-app-user'))
         navigate('/')
       },[])
       
-    const handleSumbit = async (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
+        console.log("on handleSubmit")
         if (handleValidation()){
+            console.log("validation success")
             const { password, username, email } = values
             const { data } = await axios.post(registerRoute,{
                 username,
@@ -50,7 +53,7 @@ function Register() {
 
     const handleValidation =() => {
         const { password, confirmPassword, username, email } = values
-        if(password !== confirmPassword){
+        if (password !== confirmPassword){
             toast.error(
                 'Password and confirm password should be same.', 
                 toastOptions
@@ -83,7 +86,7 @@ function Register() {
     }
     return <>
         <FormContainer>
-            <form onSubmit={(event) => handleSumbit(event)}>
+            <form onSubmit={(event) => handleSubmit(event)}>
                 <div className="brand">
                     <img src={logo} alt="Logo" />
                     <h1>snappy</h1>
